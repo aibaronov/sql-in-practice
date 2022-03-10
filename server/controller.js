@@ -57,11 +57,13 @@ module.exports = {
 
     approveAppointment: (req, res) => {
         let {apptId} = req.body
+        console.log(apptId);
+        console.log(typeof apptId);
     
         sequelize.query(`
         Update cc_appointments
         SET approved = true
-        WHERE appt_id = apptId;
+        WHERE appt_id = ${apptId};
         insert into cc_emp_appts (emp_id, appt_id)
         values (${nextEmp}, ${apptId}),
         (${nextEmp + 1}, ${apptId});
